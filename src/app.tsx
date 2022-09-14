@@ -1,10 +1,16 @@
 import { Suspense } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AboutPageLazy, MainPageLazy } from './pages';
+import { useTheme } from './theme/theme-context';
 
 export const App = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <div>
+    <div className={`app ${theme}`}>
+      <button type="button" onClick={toggleTheme}>
+        Тема
+      </button>
       <div>
         <Link to="/">Главная</Link>
         <Link to="/about">О нас</Link>

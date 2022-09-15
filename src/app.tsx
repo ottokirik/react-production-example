@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
+import { classNames } from './helpers/class-names';
 import { AboutPageLazy, MainPageLazy } from './pages';
 import { useTheme } from './theme/theme-context';
 
@@ -7,7 +8,7 @@ export const App = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className={`app ${theme}`}>
+    <div className={classNames('app', {}, [theme as string])}>
       <button type="button" onClick={toggleTheme}>
         Тема
       </button>

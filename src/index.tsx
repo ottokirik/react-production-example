@@ -1,11 +1,10 @@
-import './styles/index.sass';
+import './app/styles/index.sass';
 
+import { App } from 'app/app';
+import { ThemeProvider } from 'app/providers/theme';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-import { App } from './app';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from './theme/theme-provider';
 
 const htmlRootElement = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(htmlRootElement);

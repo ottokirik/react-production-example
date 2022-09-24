@@ -13,7 +13,6 @@ interface NavBarProps {
 export const NavBar = ({ className = '' }: NavBarProps) => {
   return (
     <nav className={classNames({ cls: classes.navBar, adds: [className] })}>
-      <ThemeSwitcher />
       <div className={classes.linksContainer}>
         <AppLink theme={AppLinkTheme.SECONDARY} to={RoutePath.main}>
           Главная

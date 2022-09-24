@@ -1,7 +1,9 @@
 import { useTheme } from 'app/providers/theme/';
+import { Suspense } from 'react';
 import { classNames } from 'shared/lib/class-names';
 import { NavBar } from 'widgets/nav-bar';
 import { SideBar } from 'widgets/side-bar';
+import { useTranslation } from 'react-i18next';
 
 import { AppRouter } from './providers/router';
 
@@ -10,13 +12,15 @@ export const App = () => {
 
   return (
     <div className={classNames({ cls: 'app', adds: [theme as string] })}>
-      <NavBar />
-      <div className="content-page">
-        <SideBar />
-        <div className="content">
-          <AppRouter />
+      <Suspense fallback="">
+        <NavBar />
+        <div className="content-page">
+          <SideBar />
+          <div className="content">
+            <AppRouter />
+          </div>
         </div>
-      </div>
+      </Suspense>
     </div>
   );
 };

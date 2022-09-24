@@ -21,7 +21,7 @@ export const LangSwitcher = ({ className = '' }: LangSwitcherProps) => {
       type="button"
       onClick={handleToggleLanguage}
     >
-      {t('Lang')}
+      {t('lang')}
     </Button>
   );
 };

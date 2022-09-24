@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/class-names';
 import { Button } from 'shared/ui';
 import { ThemeButton } from 'shared/ui/button/button';
+
 import classes from './lang-switcher.module.sass';
 
 interface LangSwitcherProps {
@@ -20,7 +21,7 @@ export const LangSwitcher = ({ className = '' }: LangSwitcherProps) => {
       type="button"
       onClick={handleToggleLanguage}
     >
-      {t('Язык')}
+      {t('Lang')}
     </Button>
   );
 };

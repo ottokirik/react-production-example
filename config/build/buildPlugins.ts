@@ -1,7 +1,8 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { ProgressPlugin, WebpackPluginInstance, DefinePlugin } from 'webpack';
-import { BuildOptions } from './types/config';
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import type { WebpackPluginInstance } from 'webpack'
+import { ProgressPlugin, DefinePlugin, HotModuleReplacementPlugin } from 'webpack'
+import type { BuildOptions } from './types/config'
 
 export const buildPlugins = ({ paths: { html }, isDev }: BuildOptions): WebpackPluginInstance[] => [
   new HtmlWebpackPlugin({
@@ -13,6 +14,7 @@ export const buildPlugins = ({ paths: { html }, isDev }: BuildOptions): WebpackP
     chunkFilename: 'css/[name].[contenthash:8].css',
   }),
   new DefinePlugin({
-    __IS_DEV__: JSON.stringify(isDev),
+    IS_DEV: JSON.stringify(isDev),
   }),
-];
+  new HotModuleReplacementPlugin(),
+]

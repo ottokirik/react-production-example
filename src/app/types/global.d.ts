@@ -1,20 +1,18 @@
 declare module '*.sass' {
-  interface IClassNames {
-    [className: string]: string;
-  }
-  const classNames: IClassNames;
-  export = classNames;
+  type ClassNames = Record<string, string>
+  const classNames: ClassNames
+  export = classNames
 }
 
 declare module '*.svg' {
-  import React from 'react';
-  export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
-  const src: string;
-  export default src;
+  import type React from 'react'
+  export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>
+  const src: string
+  export default src
 }
 
-declare module '*.png';
-declare module '*.jpg';
-declare module '*.jpeg';
+declare module '*.png'
+declare module '*.jpg'
+declare module '*.jpeg'
 
-declare const __IS_DEV__: boolean;
+declare const IS_DEV: boolean

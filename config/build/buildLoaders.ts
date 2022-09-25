@@ -1,9 +1,9 @@
-import { RuleSetRule } from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { BuildOptions } from './types/config';
+import { RuleSetRule } from 'webpack'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import { BuildOptions } from './types/config'
 
 export const buildLoaders = (options: BuildOptions): RuleSetRule[] => {
-  const { isDev } = options;
+  const { isDev } = options
 
   const svgLoader = {
     test: /\.svg$/,
@@ -13,18 +13,18 @@ export const buildLoaders = (options: BuildOptions): RuleSetRule[] => {
         exportType: 'named',
       },
     },
-  };
+  }
 
   const fileLoader = {
     test: /\.(png|jpe?g|gif)$/i,
     use: 'file-loader',
-  };
+  }
 
   const tsLoader = {
     test: /\.tsx?$/,
     use: 'ts-loader',
     exclude: /node_modules/,
-  };
+  }
 
   const styleLoader = {
     test: /\.s[ac]ss$/i,
@@ -41,7 +41,7 @@ export const buildLoaders = (options: BuildOptions): RuleSetRule[] => {
       },
       'sass-loader',
     ],
-  };
+  }
 
-  return [fileLoader, svgLoader, tsLoader, styleLoader];
-};
+  return [fileLoader, svgLoader, tsLoader, styleLoader]
+}

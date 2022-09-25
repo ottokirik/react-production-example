@@ -1,14 +1,13 @@
-import { useTheme } from 'app/providers/theme/';
-import { Suspense } from 'react';
-import { classNames } from 'shared/lib/class-names';
-import { NavBar } from 'widgets/nav-bar';
-import { SideBar } from 'widgets/side-bar';
-import { useTranslation } from 'react-i18next';
+import { useTheme } from 'app/providers/theme/'
+import { Suspense } from 'react'
+import { classNames } from 'shared/lib/class-names'
+import { NavBar } from 'widgets/nav-bar'
+import { SideBar } from 'widgets/side-bar'
 
-import { AppRouter } from './providers/router';
+import { AppRouter } from './providers/router'
 
-export const App = () => {
-  const { theme } = useTheme();
+export const App = (): JSX.Element => {
+  const { theme } = useTheme()
 
   return (
     <div className={classNames({ cls: 'app', adds: [theme as string] })}>
@@ -22,5 +21,5 @@ export const App = () => {
         </div>
       </Suspense>
     </div>
-  );
-};
+  )
+}

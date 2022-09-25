@@ -3,8 +3,6 @@ import { classNames } from 'shared/lib/class-names'
 import { Button } from 'shared/ui'
 import { ThemeButton } from 'shared/ui/button/button'
 
-import classes from './lang-switcher.module.sass'
-
 interface LangSwitcherProps {
   className?: string
 }
@@ -22,7 +20,7 @@ export const LangSwitcher = ({ className = '' }: LangSwitcherProps): JSX.Element
   return (
     <Button
       theme={ThemeButton.CLEAR}
-      className={classNames({ cls: classes.langSwitcher, adds: [className] })}
+      className={classNames({ adds: [className] })}
       type="button"
       onClick={handleToggleLanguage}
     >

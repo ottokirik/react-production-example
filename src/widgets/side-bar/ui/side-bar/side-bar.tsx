@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/class-names'
 import { LangSwitcher } from 'widgets/lang-switcher'
 import { ThemeSwitcher } from 'widgets/theme-switcher'
@@ -9,6 +10,7 @@ interface SideBarProps {
 }
 
 export const SideBar = ({ className = '' }: SideBarProps): JSX.Element => {
+  const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(true)
   const handleToggle = (): void => {
     setIsOpen(!isOpen)
@@ -24,13 +26,12 @@ export const SideBar = ({ className = '' }: SideBarProps): JSX.Element => {
         })}
       >
         <button className={classes.button} type="button" onClick={handleToggle}>
-          Переключить
+          {t('toggle')}
         </button>
         <div className={classes.switchers}>
           <ThemeSwitcher />
           <LangSwitcher />
         </div>
-        SideBar
       </aside>
     </div>
   )

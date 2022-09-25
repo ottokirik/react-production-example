@@ -12,11 +12,11 @@ type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 export const Button = (props: ButtonProps): JSX.Element => {
-  const { children, className = '', theme, ...rest } = props
+  const { children, className = '', theme, type = 'button', ...rest } = props
   const themeClass = theme !== undefined ? classes[theme] : ''
 
   return (
-    <button className={classNames({ cls: classes.button, adds: [className, themeClass] })} {...rest}>
+    <button type={type} className={classNames({ cls: classes.button, adds: [className, themeClass] })} {...rest}>
       {children}
     </button>
   )

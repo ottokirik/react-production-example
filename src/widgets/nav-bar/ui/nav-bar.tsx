@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { RoutePath } from 'shared/config/route-config'
+import { AppRoutes } from 'shared/config/route-config'
 import { classNames } from 'shared/lib/class-names'
 import { AppLink } from 'shared/ui'
 import { AppLinkTheme } from 'shared/ui/app-link/app-link'
@@ -16,10 +16,10 @@ export const NavBar = ({ className = '' }: NavBarProps): JSX.Element => {
   return (
     <nav className={classNames({ cls: classes.navBar, adds: [className] })}>
       <div className={classes.linksContainer}>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={RoutePath.main}>
+        <AppLink theme={AppLinkTheme.SECONDARY} to={AppRoutes.MAIN}>
           {t('main')}
         </AppLink>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={RoutePath.about}>
+        <AppLink theme={AppLinkTheme.SECONDARY} to={AppRoutes.ABOUT}>
           {t('about-us')}
         </AppLink>
       </div>

@@ -17,7 +17,10 @@ export const SideBar = ({ className = '' }: SideBarProps): JSX.Element => {
   }
 
   return (
-    <div className={classNames({ cls: classes.sideBarContainer, mods: { [classes.opened]: isOpen } })}>
+    <div
+      data-testid="side-bar"
+      className={classNames({ cls: classes.sideBarContainer, mods: { [classes.opened]: isOpen } })}
+    >
       <aside
         className={classNames({
           cls: classes.sideBar,
@@ -25,7 +28,7 @@ export const SideBar = ({ className = '' }: SideBarProps): JSX.Element => {
           adds: [className],
         })}
       >
-        <button className={classes.button} type="button" onClick={handleToggle}>
+        <button data-testid="toggle-side-bar" className={classes.button} type="button" onClick={handleToggle}>
           {t('toggle')}
         </button>
         <div className={classes.switchers}>

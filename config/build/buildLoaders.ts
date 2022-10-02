@@ -1,19 +1,13 @@
 import { RuleSetRule } from 'webpack'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+
 import { BuildOptions } from './types/config'
+import { buildCssLoaders } from './loaders/build-css-loaders'
+import { buildSvgLoader } from './loaders/build-svg-loader'
 
 export const buildLoaders = (options: BuildOptions): RuleSetRule[] => {
   const { isDev } = options
 
-  const svgLoader = {
-    test: /\.svg$/,
-    use: {
-      loader: '@svgr/webpack',
-      options: {
-        exportType: 'named',
-      },
-    },
-  }
+  const svgLoader = buildSvgLoader()
 
   const fileLoader = {
     test: /\.(png|jpe?g|gif)$/i,
@@ -26,22 +20,7 @@ export const buildLoaders = (options: BuildOptions): RuleSetRule[] => {
     exclude: /node_modules/,
   }
 
-  const styleLoader = {
-    test: /\.s[ac]ss$/i,
-    use: [
-      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-      {
-        loader: 'css-loader',
-        options: {
-          modules: {
-            auto: (path: string) => Boolean(path.includes('.module.')),
-            localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base84:8]',
-          },
-        },
-      },
-      'sass-loader',
-    ],
-  }
+  const styleLoader = buildCssLoaders(isDev)
 
   return [fileLoader, svgLoader, tsLoader, styleLoader]
 }

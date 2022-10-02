@@ -6,20 +6,29 @@ import { DefinePlugin, HotModuleReplacementPlugin, ProgressPlugin } from 'webpac
 import type { WebpackPluginInstance } from 'webpack'
 import type { BuildOptions } from './types/config'
 
-export const buildPlugins = ({ paths: { html }, isDev }: BuildOptions): WebpackPluginInstance[] => [
-  new HtmlWebpackPlugin({
-    template: html,
-  }),
-  new ProgressPlugin(),
-  new MiniCssExtractPlugin({
-    filename: 'css/[name].[contenthash:8].css',
-    chunkFilename: 'css/[name].[contenthash:8].css',
-  }),
-  new DefinePlugin({
-    IS_DEV: JSON.stringify(isDev),
-  }),
-  new HotModuleReplacementPlugin(),
-  new BundleAnalyzerPlugin({
-    openAnalyzer: false,
-  }),
-]
+export const buildPlugins = ({ paths: { html }, isDev }: BuildOptions): WebpackPluginInstance[] => {
+  const plugins = [
+    new HtmlWebpackPlugin({
+      template: html,
+    }),
+    new ProgressPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:8].css',
+      chunkFilename: 'css/[name].[contenthash:8].css',
+    }),
+    new DefinePlugin({
+      IS_DEV: JSON.stringify(isDev),
+    }),
+  ]
+
+  if (isDev) {
+    plugins.push(
+      new HotModuleReplacementPlugin(),
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+      })
+    )
+  }
+
+  return plugins
+}

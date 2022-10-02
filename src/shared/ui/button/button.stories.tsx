@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Theme } from 'app/providers/theme'
 import { ThemeDecorator } from 'shared/config/storybook'
 
-import { Button, ThemeButton } from './button'
+import { Button, ButtonSize, ButtonTheme } from './button'
 
 const meta: ComponentMeta<typeof Button> = {
   title: 'shared/Button',
@@ -21,18 +21,32 @@ Standard.args = {
 export const Clear = Template.bind({})
 Clear.args = {
   children: 'Clear button',
-  theme: ThemeButton.CLEAR,
+  theme: ButtonTheme.CLEAR,
 }
 
 export const Outline = Template.bind({})
 Outline.args = {
   children: 'Outline button',
-  theme: ThemeButton.OUTLINE,
+  theme: ButtonTheme.OUTLINE,
 }
 
 export const OutlineDark = Template.bind({})
 OutlineDark.args = {
   children: 'Outline button',
-  theme: ThemeButton.OUTLINE,
+  theme: ButtonTheme.OUTLINE,
 }
 OutlineDark.decorators = [ThemeDecorator(Theme.DARK)]
+
+export const OutlineSmall = Template.bind({})
+OutlineSmall.args = {
+  children: 'Outline small button',
+  theme: ButtonTheme.OUTLINE,
+  size: ButtonSize.SMALL,
+}
+
+export const OutlineMedium = Template.bind({})
+OutlineMedium.args = {
+  children: 'Outline medium button',
+  theme: ButtonTheme.OUTLINE,
+  size: ButtonSize.MEDIUM,
+}

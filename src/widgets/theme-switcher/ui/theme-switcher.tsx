@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { ReactComponent as ThemeIcon } from 'shared/assets/icons/theme-switcher.svg'
 import { classNames } from 'shared/lib/class-names'
 import { Button } from 'shared/ui'
-import { ThemeButton } from 'shared/ui/button/button'
+import { ButtonTheme } from 'shared/ui/button/button'
 
 import classes from './theme-switcher.module.sass'
 
@@ -18,7 +18,7 @@ export const ThemeSwitcher = ({ className = '' }: ThemeSwitcherProps): JSX.Eleme
   const iconClassName = theme === Theme.DARK ? classes.light : classes.dark
 
   return (
-    <Button theme={ThemeButton.CLEAR} className={className} onClick={toggleTheme} type="button" title={t('toggle')}>
+    <Button theme={ButtonTheme.CLEAR} className={className} onClick={toggleTheme} type="button" title={t('toggle')}>
       <ThemeIcon className={classNames({ cls: classes.icon, adds: [iconClassName] })} />
     </Button>
   )

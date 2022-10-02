@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { Button, ThemeButton } from './button'
+import { Button, ButtonTheme } from './button'
 
 describe('Button', () => {
   test('button with text "create"', () => {
@@ -10,9 +10,9 @@ describe('Button', () => {
   })
 
   test('button has className "clear"', () => {
-    render(<Button theme={ThemeButton.CLEAR}>create</Button>)
+    render(<Button theme={ButtonTheme.CLEAR}>create</Button>)
 
     const button = screen.getByRole('button', { name: /create/i })
-    expect(button).toHaveClass(ThemeButton.CLEAR)
+    expect(button).toHaveClass(ButtonTheme.CLEAR)
   })
 })

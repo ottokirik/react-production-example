@@ -1,5 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { classNames } from 'shared/lib/class-names'
+
 import classes from './button.module.sass'
 
 export enum ButtonTheme {

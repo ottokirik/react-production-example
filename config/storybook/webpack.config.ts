@@ -1,5 +1,5 @@
 import path from 'path'
-import { Configuration } from 'webpack'
+import { Configuration, RuleSetRule } from 'webpack'
 import { buildCssLoaders } from '../build/loaders/build-css-loaders'
 import { buildSvgLoader } from '../build/loaders/build-svg-loader'
 import { BuildPaths } from '../build/types/config'
@@ -12,12 +12,10 @@ export default ({ config }: { config: Configuration }): Configuration => {
     src: path.resolve(__dirname, '..', '..', 'src'),
   }
 
-  config.module?.rules?.forEach((rule) => {
-    if (rule instanceof Object && 'test' in rule) {
-      // eslint-disable-next-line @typescript-eslint/prefer-includes
-      if (/svg/.test(rule.test as string)) {
-        rule.exclude = /\.svg$/i
-      }
+  config.module?.rules?.forEach((rule: RuleSetRule | '...') => {
+    // eslint-disable-next-line @typescript-eslint/prefer-includes
+    if (rule instanceof Object && 'test' in rule && /svg/.test(rule.test as string)) {
+      rule.exclude = /\.svg$/i
     }
   })
 

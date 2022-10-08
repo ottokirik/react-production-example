@@ -7,6 +7,7 @@ import { ThemeProvider } from 'app/providers/theme'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
+import { StoreProvider } from 'app/providers/store-provider'
 
 const htmlRootElement = document.getElementById('root') as HTMLElement
 const root = ReactDOM.createRoot(htmlRootElement)
@@ -14,11 +15,13 @@ const root = ReactDOM.createRoot(htmlRootElement)
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <BrowserRouter>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
+      <StoreProvider>
+        <BrowserRouter>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
+      </StoreProvider>
     </ErrorBoundary>
   </React.StrictMode>
 )

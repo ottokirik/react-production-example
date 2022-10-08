@@ -1,0 +1,16 @@
+.overlay
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: var(--black-color)
+    opacity: 0
+    transition: var(--transition)
+    z-index: -1
+    pointer-events: none
+
+.visible
+    opacity: .6
+    pointer-events: auto
+    z-index: var(--modal-z-index)

@@ -6,5 +6,6 @@
   "toggle": "Toggle",
   "not-found": "Page not found",
   "error-occurred": "An unexpected error occurred",
-  "refresh-page": "Refresh page"
+  "refresh-page": "Refresh page",
+  "sign-in": "Sign In"
 }

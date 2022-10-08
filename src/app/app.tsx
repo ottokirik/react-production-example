@@ -12,6 +12,7 @@ export const App = (): JSX.Element => {
 
   return (
     <div className={classNames({ cls: 'app', adds: [theme as string] })}>
+      <div id="modal-container">{/* Modal */}</div>
       <Suspense fallback={<PageLoader />}>
         <NavBar />
         <div className="content-page">

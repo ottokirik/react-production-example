@@ -22,10 +22,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const body = document.body
-    const prevClassName = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
-
-    body.classList.remove(prevClassName)
-    body.classList.add(theme)
+    body.className = theme
   }, [theme])
 
   return <ThemeContext.Provider value={defaultProps}>{children}</ThemeContext.Provider>

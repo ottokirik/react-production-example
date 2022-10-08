@@ -1,16 +1,14 @@
-import type { FC, ReactNode } from 'react'
-import { useState } from 'react'
+import { FC, ReactNode, useEffect, useState } from 'react'
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/theme-context'
 
 interface ThemeProviderProps {
   children?: ReactNode
-  initialTheme?: Theme
 }
 
 const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) ?? Theme.LIGHT
 
-export const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }) => {
-  const [theme, setTheme] = useState<Theme>(initialTheme ?? defaultTheme)
+export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
+  const [theme, setTheme] = useState<Theme>(defaultTheme)
 
   const toggleTheme = (): void => {
     const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
@@ -18,7 +16,17 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }
     setTheme(newTheme)
   }
 
-  const defaultProps = { theme, toggleTheme }
+  const handleSetTheme = (theme: Theme): void => setTheme(theme)
+
+  const defaultProps = { theme, toggleTheme, setTheme: handleSetTheme }
+
+  useEffect(() => {
+    const body = document.body
+    const prevClassName = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
+
+    body.classList.remove(prevClassName)
+    body.classList.add(theme)
+  }, [theme])
 
   return <ThemeContext.Provider value={defaultProps}>{children}</ThemeContext.Provider>
 }

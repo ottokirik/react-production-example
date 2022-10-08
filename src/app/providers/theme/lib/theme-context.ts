@@ -6,11 +6,16 @@ export enum Theme {
 }
 
 export interface ThemeContextProps {
-  theme?: Theme
-  toggleTheme?: () => void
+  theme: Theme
+  toggleTheme: () => void
+  setTheme: (theme: Theme) => void
 }
 
-export const ThemeContext = createContext<ThemeContextProps>({})
+export const ThemeContext = createContext<ThemeContextProps>({
+  theme: Theme.LIGHT,
+  toggleTheme: () => null,
+  setTheme: () => null,
+})
 export const LOCAL_STORAGE_THEME_KEY = 'app/theme'
 
 export const useTheme = (): ThemeContextProps => useContext<ThemeContextProps>(ThemeContext)

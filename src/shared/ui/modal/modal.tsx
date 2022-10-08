@@ -13,10 +13,8 @@ interface ModalProps {
 }
 
 export const Modal = ({ className = '', children, isOpen, onClose }: ModalProps): JSX.Element | null => {
-  const rootElement = document.getElementById('modal-container')
-
-  return rootElement !== null ? (
-    <Portal rootElement={rootElement}>
+  return (
+    <Portal>
       <Overlay isVisible={isOpen} onClose={onClose}>
         <div
           onClick={stopClickBubbling<HTMLDivElement, MouseEvent>}
@@ -26,5 +24,5 @@ export const Modal = ({ className = '', children, isOpen, onClose }: ModalProps)
         </div>
       </Overlay>
     </Portal>
-  ) : null
+  )
 }

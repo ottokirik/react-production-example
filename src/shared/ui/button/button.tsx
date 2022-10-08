@@ -5,6 +5,7 @@ import classes from './button.module.sass'
 
 export enum ButtonTheme {
   CLEAR = 'clear',
+  CLEAR_INVERTED = 'clearInverted',
   OUTLINE = 'outline',
 }
 

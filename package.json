@@ -14,7 +14,8 @@
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
-    "storybook:build": "build-storybook -c ./config/storybook"
+    "storybook:build": "build-storybook -c ./config/storybook",
+    "start:dev:server": "node ./json-server/index.js"
   },
   "keywords": [],
   "author": "Petrov Kirill",
@@ -61,6 +62,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.0.3",
     "jest-environment-jsdom": "^29.0.3",
+    "json-server": "^0.17.0",
     "loki": "^0.30.3",
     "mini-css-extract-plugin": "^2.6.1",
     "prettier": "2.7.1",

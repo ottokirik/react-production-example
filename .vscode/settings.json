@@ -1,3 +1,11 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "tsImportSorter.configuration.autoFormat": "onSave",
+  "tsImportSorter.configuration.wrappingStyle": {
+    "maxBindingNamesPerLine": 0,
+    "maxDefaultAndBindingNamesPerLine": 0,
+    "maxExportNamesPerLine": 0,
+    "maxNamesPerWrappedLine": 0,
+    "ignoreComments": false
+  }
 }

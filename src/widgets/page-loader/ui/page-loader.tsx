@@ -1,13 +1,13 @@
+import { FC } from 'react'
+
 import { classNames } from 'shared/lib/class-names'
+import { ClassName } from 'shared/types'
 import { Loader } from 'shared/ui'
-import classes from './page-loader.module.sass'
 
-interface PageLoaderProps {
-  className?: string
-}
+import css from './page-loader.module.sass'
 
-export const PageLoader = ({ className = '' }: PageLoaderProps): JSX.Element => (
-  <div className={classNames({ cls: classes.pageLoader, adds: [className] })}>
+export const PageLoader: FC<ClassName> = ({ className = '' }) => (
+  <div className={classNames({ cls: css.pageLoader, adds: [className] })}>
     <Loader />
   </div>
 )

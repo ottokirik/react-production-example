@@ -1,13 +1,12 @@
-import { FC, ReactNode, useEffect, useState } from 'react'
-import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/theme-context'
+import { FC, useEffect, useState } from 'react'
 
-interface ThemeProviderProps {
-  children?: ReactNode
-}
+import { Children } from 'shared/types'
+
+import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/theme-context'
 
 const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) ?? Theme.LIGHT
 
-export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider: FC<Children> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
 
   const toggleTheme = (): void => {

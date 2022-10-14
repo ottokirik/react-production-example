@@ -1,14 +1,16 @@
+import { FC, useEffect } from 'react'
+
+import { Theme, ThemeProvider, useTheme } from 'app/providers/theme'
+import { Children } from 'shared/types'
+
 /* eslint-disable react/display-name */
 import { Story } from '@storybook/react'
-import { Theme, ThemeProvider, useTheme } from 'app/providers/theme'
-import { ReactNode, useEffect } from 'react'
 
-interface SwitchThemeProps {
-  children: ReactNode
+type SwitchThemeProps = {
   theme: Theme
-}
+} & Children
 
-const SwitchTheme = ({ children, theme }: SwitchThemeProps): JSX.Element => {
+const SwitchTheme: FC<SwitchThemeProps> = ({ children, theme }: SwitchThemeProps) => {
   const { setTheme } = useTheme()
 
   useEffect(() => {

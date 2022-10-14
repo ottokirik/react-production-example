@@ -1,63 +1,63 @@
-import { HTMLAttributes, useState } from 'react'
-import { classNames } from 'shared/lib/class-names'
-import { LangSwitcher } from 'widgets/lang-switcher'
-import { ThemeSwitcher } from 'widgets/theme-switcher'
+import { FC, HTMLAttributes, useState } from 'react'
+
+import { useTranslation } from 'react-i18next'
+import { ReactComponent as AboutIcon } from 'shared/assets/icons/about.svg'
 import { ReactComponent as ArrowIcon } from 'shared/assets/icons/arrow.svg'
 import { ReactComponent as MainIcon } from 'shared/assets/icons/main.svg'
-import { ReactComponent as AboutIcon } from 'shared/assets/icons/about.svg'
-
-import classes from './side-bar.module.sass'
-import { AppLink, Button } from 'shared/ui'
-import { useTranslation } from 'react-i18next'
 import { AppRoutes } from 'shared/config/route-config'
+import { classNames } from 'shared/lib/class-names'
+import { ClassName } from 'shared/types'
+import { AppLink, Button } from 'shared/ui'
 import { AppLinkTheme } from 'shared/ui/app-link/app-link'
+import { LangSwitcher } from 'widgets/lang-switcher'
+import { ThemeSwitcher } from 'widgets/theme-switcher'
 
-interface SideBarProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string
-}
+import css from './side-bar.module.sass'
 
-export const SideBar = ({ className = '', ...rest }: SideBarProps): JSX.Element => {
+type SideBarProps = HTMLAttributes<HTMLDivElement> & ClassName
+
+export const SideBar: FC<SideBarProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(true)
   const handleToggle = (): void => {
     setIsOpen(!isOpen)
   }
 
-  const toggleArrowClassName = `${classes.toggleIcon} ${isOpen ? '' : classes.closed}`
+  const toggleArrowClassName = `${css.toggleIcon} ${isOpen ? '' : css.closed}`
 
   return (
     <div
       {...rest}
       data-testid="side-bar"
-      className={classNames({ cls: classes.sideBarContainer, mods: { [classes.opened]: isOpen } })}
+      className={classNames({ cls: css.sideBarContainer, mods: { [css.opened]: isOpen } })}
     >
       <aside
         className={classNames({
-          cls: classes.sideBar,
-          mods: { [classes.opened]: isOpen },
+          cls: css.sideBar,
+          mods: { [css.opened]: isOpen },
           adds: [className],
         })}
       >
-        <nav className={classes.sideBarLinkContainer}>
-          <AppLink className={classes.sideBarLink} theme={AppLinkTheme.SECONDARY} to={AppRoutes.MAIN}>
-            <MainIcon className={classes.sideBarLinkIcon} />
-            <span className={classes.sideBarLinkText}>{t('main')}</span>
+        <nav className={css.sideBarLinkContainer}>
+          <AppLink className={css.sideBarLink} theme={AppLinkTheme.SECONDARY} to={AppRoutes.MAIN}>
+            <MainIcon className={css.sideBarLinkIcon} />
+            <span className={css.sideBarLinkText}>{t('main')}</span>
           </AppLink>
-          <AppLink className={classes.sideBarLink} theme={AppLinkTheme.SECONDARY} to={AppRoutes.ABOUT}>
-            <AboutIcon className={classes.sideBarLinkIcon} />
-            <span className={classes.sideBarLinkText}>{t('about-us')}</span>
+          <AppLink className={css.sideBarLink} theme={AppLinkTheme.SECONDARY} to={AppRoutes.ABOUT}>
+            <AboutIcon className={css.sideBarLinkIcon} />
+            <span className={css.sideBarLinkText}>{t('about-us')}</span>
           </AppLink>
         </nav>
         <Button
           data-testid="toggle-side-bar"
-          className={classes.toggleButton}
+          className={css.toggleButton}
           type="button"
           title={t('toggle')}
           onClick={handleToggle}
         >
           <ArrowIcon className={toggleArrowClassName} />
         </Button>
-        <div className={classes.switchers}>
+        <div className={css.switchers}>
           <ThemeSwitcher />
           <LangSwitcher short={!isOpen} />
         </div>

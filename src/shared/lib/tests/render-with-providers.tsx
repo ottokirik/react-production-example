@@ -1,15 +1,16 @@
-import { DeepPartial } from '@reduxjs/toolkit'
-import { render, RenderResult } from '@testing-library/react'
+import { ReactNode } from 'react'
+
 import { StoreProvider } from 'app/providers/store-provider'
 import { StateSchema } from 'app/providers/store-provider/config/state-schema'
-import { ReactNode } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { MemoryRouter } from 'react-router-dom'
 import i18n from 'shared/config/i18n/i18n-for-tests'
 
+import { render, RenderResult } from '@testing-library/react'
+
 export interface RenderWithProvidersOptions {
   route?: string
-  initialState?: DeepPartial<StateSchema>
+  initialState?: StateSchema
 }
 
 export const renderWithProviders = (component: ReactNode, options: RenderWithProvidersOptions = {}): RenderResult => {

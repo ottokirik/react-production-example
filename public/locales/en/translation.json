@@ -7,5 +7,9 @@
   "not-found": "Page not found",
   "error-occurred": "An unexpected error occurred",
   "refresh-page": "Refresh page",
-  "sign-in": "Sign In"
+  "sign-in": "Sign In",
+  "email": "Email",
+  "password": "Password",
+  "emailPlaceholder": "Enter email",
+  "passwordPlaceholder": "Enter password"
 }

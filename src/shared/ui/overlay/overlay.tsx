@@ -1,17 +1,19 @@
-import { ReactNode, useCallback, useEffect } from 'react'
-import { classNames } from 'shared/lib/class-names'
-import classes from './overlay.module.sass'
+import { FC, useCallback, useEffect } from 'react'
 
-interface OverlayProps {
-  className?: string
-  children: ReactNode
+import { classNames } from 'shared/lib/class-names'
+import { Children, ClassName } from 'shared/types'
+
+import css from './overlay.module.sass'
+
+type OverlayProps = {
   isVisible: boolean
   onClose: () => void
-}
+} & ClassName &
+  Children
 
-export const Overlay = ({ className = '', children, isVisible, onClose }: OverlayProps): JSX.Element => {
+export const Overlay: FC<OverlayProps> = ({ className = '', children, isVisible, onClose }) => {
   const mods: Record<string, boolean> = {
-    [classes.visible]: isVisible,
+    [css.visible]: isVisible,
   }
 
   const handleClose = (): void => onClose()
@@ -33,7 +35,7 @@ export const Overlay = ({ className = '', children, isVisible, onClose }: Overla
   }, [handleKeyDown])
 
   return (
-    <div onClick={handleClose} className={classNames({ cls: classes.overlay, mods, adds: [className] })}>
+    <div onClick={handleClose} className={classNames({ cls: css.overlay, mods, adds: [className] })}>
       {children}
     </div>
   )

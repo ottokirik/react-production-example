@@ -1,7 +1,9 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import { classNames } from 'shared/lib/class-names'
+import type { ButtonHTMLAttributes, FC } from 'react'
 
-import classes from './button.module.sass'
+import { classNames } from 'shared/lib/class-names'
+import { Children } from 'shared/types'
+
+import css from './button.module.sass'
 
 export enum ButtonTheme {
   CLEAR = 'clear',
@@ -15,21 +17,17 @@ export enum ButtonSize {
 }
 
 type ButtonProps = {
-  children?: ReactNode
   theme?: ButtonTheme
   size?: ButtonSize
-} & ButtonHTMLAttributes<HTMLButtonElement>
+} & ButtonHTMLAttributes<HTMLButtonElement> &
+  Children
 
-export const Button = (props: ButtonProps): JSX.Element => {
+export const Button: FC<ButtonProps> = (props: ButtonProps) => {
   const { children, className = '', theme, size = ButtonSize.MEDIUM, type = 'button', ...rest } = props
-  const themeClass = theme !== undefined ? classes[theme] : ''
+  const themeClass = theme !== undefined ? css[theme] : ''
 
   return (
-    <button
-      type={type}
-      className={classNames({ cls: classes.button, adds: [className, themeClass, classes[size]] })}
-      {...rest}
-    >
+    <button type={type} className={classNames({ cls: css.button, adds: [className, themeClass, css[size]] })} {...rest}>
       {children}
     </button>
   )

@@ -1,24 +1,27 @@
-import { ReactNode } from 'react'
+import { FC } from 'react'
+
 import { classNames } from 'shared/lib/class-names'
 import { stopClickBubbling } from 'shared/lib/eventHelpers'
+import { Children, ClassName } from 'shared/types'
+
 import { Overlay } from '../overlay/overlay'
 import { Portal } from '../portal/portal'
-import classes from './modal.module.sass'
+import css from './modal.module.sass'
 
-interface ModalProps {
-  className?: string
-  children: ReactNode
+export type ModalProps = {
   isOpen: boolean
   onClose: () => void
-}
+  lazy?: boolean
+} & ClassName &
+  Children
 
-export const Modal = ({ className = '', children, isOpen, onClose }: ModalProps): JSX.Element | null => {
+export const Modal: FC<ModalProps> = ({ className = '', children, isOpen, onClose, lazy = true }) => {
   return (
     <Portal>
       <Overlay isVisible={isOpen} onClose={onClose}>
         <div
           onClick={stopClickBubbling<HTMLDivElement, MouseEvent>}
-          className={classNames({ cls: classes.modalContainer, adds: [className] })}
+          className={classNames({ cls: css.modalContainer, adds: [className] })}
         >
           <div>{children}</div>
         </div>

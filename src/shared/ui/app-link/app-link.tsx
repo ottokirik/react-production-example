@@ -1,9 +1,11 @@
-import type { ReactNode } from 'react'
+import { FC } from 'react'
+
 import type { LinkProps } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { classNames } from 'shared/lib/class-names'
+import { Children, ClassName } from 'shared/types'
 
-import classes from './app-link.module.sass'
+import css from './app-link.module.sass'
 
 export enum AppLinkTheme {
   PRIMARY = 'primary',
@@ -11,15 +13,15 @@ export enum AppLinkTheme {
 }
 
 type AppLinkProps = {
-  className?: string
   theme?: AppLinkTheme
-  children?: ReactNode
-} & LinkProps
+} & LinkProps &
+  ClassName &
+  Children
 
-export const AppLink = (props: AppLinkProps): JSX.Element => {
+export const AppLink: FC<AppLinkProps> = (props: AppLinkProps) => {
   const { className = '', children, to, theme = AppLinkTheme.PRIMARY, ...rest } = props
   return (
-    <Link to={to} className={classNames({ cls: classes.appLink, adds: [className, classes[theme]] })} {...rest}>
+    <Link to={to} className={classNames({ cls: css.appLink, adds: [className, css[theme]] })} {...rest}>
       {children}
     </Link>
   )

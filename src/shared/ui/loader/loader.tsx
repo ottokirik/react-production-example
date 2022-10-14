@@ -1,11 +1,11 @@
-import { classNames } from 'shared/lib/class-names'
 import './loader.sass'
 
-interface LoaderProps {
-  className?: string
-}
+import { FC } from 'react'
 
-export const Loader = ({ className = '' }: LoaderProps): JSX.Element => (
+import { classNames } from 'shared/lib/class-names'
+import { ClassName } from 'shared/types'
+
+export const Loader: FC<ClassName> = ({ className = '' }) => (
   <div className={classNames({ cls: 'lds-ellipsis', adds: [className] })}>
     <div />
     <div />

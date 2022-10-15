@@ -15,7 +15,8 @@
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "build-storybook -c ./config/storybook",
-    "start:dev:server": "node ./json-server/index.js"
+    "start:dev:server": "node ./json-server/index.js",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "Petrov Kirill",
@@ -76,7 +77,8 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.0"
+    "webpack-dev-server": "^4.11.0",
+    "husky": "^8.0.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",

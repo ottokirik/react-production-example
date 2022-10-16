@@ -9,6 +9,7 @@
     "start": "webpack serve --env port=3000",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "npx loki test",
+    "test:ui:update": "npx loki update",
     "test:ui:ok": "npx loki approve",
     "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",

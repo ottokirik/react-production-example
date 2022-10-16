@@ -1,7 +1,6 @@
 import { FC } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/providers/store-provider'
-import { getUserAuthData, userActions } from 'entities/user'
 import { LoginModal } from 'features/auth-by-username'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/class-names'
@@ -10,6 +9,7 @@ import { ClassName } from 'shared/types'
 import { Button } from 'shared/ui'
 import { ButtonTheme } from 'shared/ui/button/button'
 
+import { getUserAuthData, userActions } from '../../../entities/user'
 import css from './nav-bar.module.sass'
 
 export const NavBar: FC<ClassName> = ({ className = '' }) => {

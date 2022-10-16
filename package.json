@@ -22,7 +22,6 @@
   "author": "Petrov Kirill",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.19.3",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-interactions": "^6.5.12",
@@ -45,7 +44,6 @@
     "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
-    "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
@@ -60,6 +58,7 @@
     "eslint-plugin-storybook": "^0.6.4",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.0.3",
     "jest-environment-jsdom": "^29.0.3",
@@ -77,8 +76,7 @@
     "webpack": "^5.74.0",
     "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.0",
-    "husky": "^8.0.0"
+    "webpack-dev-server": "^4.11.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",

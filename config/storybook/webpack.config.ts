@@ -1,5 +1,6 @@
 import path from 'path'
-import { Configuration, RuleSetRule } from 'webpack'
+import { Configuration, DefinePlugin, RuleSetRule } from 'webpack'
+
 import { buildCssLoaders } from '../build/loaders/build-css-loaders'
 import { buildSvgLoader } from '../build/loaders/build-svg-loader'
 import { BuildPaths } from '../build/types/config'
@@ -18,6 +19,12 @@ export default ({ config }: { config: Configuration }): Configuration => {
       rule.exclude = /\.svg$/i
     }
   })
+
+  config.plugins?.push(
+    new DefinePlugin({
+      IS_DEV: true,
+    })
+  )
 
   config.resolve?.modules?.push(paths.src)
   config.resolve?.extensions?.push('ts', 'tsx')

@@ -1,6 +1,7 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Theme } from 'app/providers/theme'
 import { ThemeDecorator } from 'shared/config/storybook'
+
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { Button, ButtonSize, ButtonTheme } from './button'
 
@@ -55,4 +56,12 @@ OutlineMedium.args = {
   children: 'Outline medium button',
   theme: ButtonTheme.OUTLINE,
   size: ButtonSize.MEDIUM,
+}
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  children: 'Outline medium button',
+  theme: ButtonTheme.OUTLINE,
+  size: ButtonSize.MEDIUM,
+  disabled: true,
 }

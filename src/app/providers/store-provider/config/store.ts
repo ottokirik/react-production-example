@@ -1,16 +1,19 @@
 import { userReducer } from 'entities/user'
+import { loginReducer } from 'features/auth-by-username/model/slice/login-slice'
 
-import { configureStore, EnhancedStore, ReducersMapObject } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import { StateSchema } from './state-schema'
 
-export const createReduxStore = (initialState?: StateSchema): EnhancedStore<StateSchema> => {
-  const rootReducer: ReducersMapObject<StateSchema> = {
-    user: userReducer,
-  }
-  return configureStore<StateSchema>({
-    reducer: rootReducer,
-    devTools: IS_DEV,
-    preloadedState: initialState,
-  })
-}
+const rootReducer = combineReducers({
+  user: userReducer,
+  login: loginReducer,
+})
+
+export const store = configureStore<StateSchema>({
+  reducer: rootReducer,
+  devTools: IS_DEV,
+})
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

@@ -1,6 +1,8 @@
+import { renderWithProviders } from 'shared/lib/tests/render-with-providers'
+
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { renderWithProviders } from 'shared/lib/tests/render-with-providers'
+
 import { SideBar } from './side-bar'
 
 describe('SideBar', () => {

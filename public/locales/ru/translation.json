@@ -8,8 +8,10 @@
   "error-occurred": "Произошла непредвиденная ошибка",
   "refresh-page": "Обновить страницу",
   "sign-in": "Войти",
+  "sign-out": "Выйти",
   "email": "Email",
   "password": "Пароль",
   "emailPlaceholder": "Введите email",
-  "passwordPlaceholder": "Введите пароль"
+  "passwordPlaceholder": "Введите пароль",
+  "wrongCredentials": "Неправильные email или пароль"
 }

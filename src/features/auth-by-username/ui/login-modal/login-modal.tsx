@@ -7,8 +7,8 @@ import { LoginForm } from '../login-form/login-form'
 
 export const LoginModal: FC<Omit<ModalProps, 'children'>> = ({ className = '', isOpen, onClose }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <LoginForm />
+    <Modal className={className} isOpen={isOpen} onClose={onClose}>
+      <LoginForm onClose={onClose} />
     </Modal>
   )
 }

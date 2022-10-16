@@ -9,17 +9,14 @@ const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) ??
 export const ThemeProvider: FC<Children> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme)
 
-  const toggleTheme = (): void => {
-    const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme)
-    setTheme(newTheme)
-  }
+  const toggleTheme = (): void => setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT)
 
   const handleSetTheme = (theme: Theme): void => setTheme(theme)
 
   const defaultProps = { theme, toggleTheme, setTheme: handleSetTheme }
 
   useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme)
     const body = document.body
     body.className = theme
   }, [theme])

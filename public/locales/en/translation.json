@@ -8,8 +8,10 @@
   "error-occurred": "An unexpected error occurred",
   "refresh-page": "Refresh page",
   "sign-in": "Sign In",
+  "sign-out": "Sign Out",
   "email": "Email",
   "password": "Password",
   "emailPlaceholder": "Enter email",
-  "passwordPlaceholder": "Enter password"
+  "passwordPlaceholder": "Enter password",
+  "wrongCredentials": "Incorrect email or password"
 }

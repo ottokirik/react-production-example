@@ -16,7 +16,7 @@ export const store = configureStore<StateSchema>({
   devTools: IS_DEV,
 })
 
-// @ts-ignore
+// @ts-expect-error
 store.reducerManager = reducerManager
 
 export type RootState = ReturnType<typeof store.getState>

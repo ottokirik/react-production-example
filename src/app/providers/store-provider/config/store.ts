@@ -1,6 +1,6 @@
 import { userReducer } from 'entities/user'
 
-import { configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
+import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
 
 import { StateSchema } from './state-schema'
 import { createReducerManager } from './reducer-manager'
@@ -12,7 +12,8 @@ const rootReducer: ReducersMapObject<StateSchema> = {
 const reducerManager = createReducerManager(rootReducer)
 
 export const store = configureStore<StateSchema>({
-  reducer: reducerManager.reduce as Reducer<StateSchema>,
+  // @ts-expect-error
+  reducer: reducerManager.reduce,
   devTools: IS_DEV,
 })
 

@@ -5,15 +5,19 @@ import { StateSchemaKey } from 'app/providers/store-provider/config/state-schema
 import { useStore } from 'react-redux'
 
 import { Reducer } from '@reduxjs/toolkit'
+import { useLogActions } from './use-log-actions'
 
 export const useReducerLoader = (reducerName: StateSchemaKey, reducer: Reducer): void => {
   const store = useStore() as ReduxStoreWithManager
+  const { initAction, destroyAction } = useLogActions(reducerName)
 
   useEffect(() => {
     store.reducerManager.add(reducerName, reducer)
+    initAction()
 
     return () => {
       store.reducerManager.remove(reducerName)
+      destroyAction()
     }
-  }, [store.reducerManager, reducerName, reducer])
+  }, [store.reducerManager, reducerName, reducer, initAction, destroyAction])
 }

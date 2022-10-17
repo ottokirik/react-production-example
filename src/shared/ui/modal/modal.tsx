@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import { classNames } from 'shared/lib/class-names'
 import { stopClickBubbling } from 'shared/lib/eventHelpers'
@@ -15,10 +15,31 @@ export type ModalProps = {
 } & ClassName &
   Children
 
-export const Modal: FC<ModalProps> = ({ className = '', children, isOpen, onClose, lazy = true }) => {
+export const Modal: FC<ModalProps> = ({ className = '', children, isOpen, onClose }) => {
+  const [isVisible, setIsVisible] = useState(false)
+
+  const handleClose = (): void => {
+    setIsVisible(false)
+    const timerId = setTimeout(() => {
+      onClose()
+      clearTimeout(timerId)
+    }, 250)
+  }
+
+  useEffect(() => {
+    if (isOpen) {
+      const timerId = setTimeout(() => {
+        setIsVisible(true)
+        clearTimeout(timerId)
+      }, 100)
+    }
+  }, [isOpen])
+
+  if (!isOpen && !isVisible) return null
+
   return (
     <Portal>
-      <Overlay isVisible={isOpen} onClose={onClose}>
+      <Overlay isVisible={isVisible} onClose={handleClose}>
         <div
           onClick={stopClickBubbling<HTMLDivElement, MouseEvent>}
           className={classNames({ cls: css.modalContainer, adds: [className] })}

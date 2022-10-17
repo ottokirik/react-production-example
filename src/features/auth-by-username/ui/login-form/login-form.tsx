@@ -10,22 +10,22 @@ import { getLoginState } from '../../model/selectors'
 import { loginByEmail } from '../../model/services/login-by-email'
 import css from './login-form.module.sass'
 
-enum LoginFields {
+enum LoginsField {
   EMAIL = 'email',
   PASSWORD = 'password',
 }
 
 const inputsConfig: Record<string, InputHTMLAttributes<HTMLInputElement>> = {
-  [LoginFields.EMAIL]: {
+  [LoginsField.EMAIL]: {
     required: true,
     type: 'email',
-    name: LoginFields.EMAIL,
+    name: LoginsField.EMAIL,
     autoFocus: true,
   },
-  [LoginFields.PASSWORD]: {
+  [LoginsField.PASSWORD]: {
     required: true,
     type: 'password',
-    name: LoginFields.PASSWORD,
+    name: LoginsField.PASSWORD,
     pattern: '^[A-Za-z0-9]{3,32}',
   },
 }
@@ -34,7 +34,7 @@ type LoginFormProps = {
   onClose?: () => void
 } & ClassName
 
-export const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
+const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { isLoading, error } = useAppSelector(getLoginState)
@@ -49,8 +49,8 @@ export const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
 
     const formData = new FormData(form)
 
-    const email = formData.get(LoginFields.EMAIL) as string
-    const password = formData.get(LoginFields.PASSWORD) as string
+    const email = formData.get(LoginsField.EMAIL) as string
+    const password = formData.get(LoginsField.PASSWORD) as string
 
     void dispatch(loginByEmail({ email, password }))
 
@@ -61,9 +61,9 @@ export const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
     <form ref={formRef} className={classNames({ cls: css.container, adds: [className] })} onSubmit={handleSubmit}>
       {error === true && <Text text={t('wrongCredentials')} />}
       <fieldset className={css.inputContainer}>
-        <Input {...inputsConfig[LoginFields.EMAIL]} label={`${t('email')} :`} placeholder={t('emailPlaceholder')} />
+        <Input {...inputsConfig[LoginsField.EMAIL]} label={`${t('email')} :`} placeholder={t('emailPlaceholder')} />
         <Input
-          {...inputsConfig[LoginFields.PASSWORD]}
+          {...inputsConfig[LoginsField.PASSWORD]}
           label={`${t('password')} :`}
           placeholder={t('passwordPlaceholder')}
         />
@@ -74,3 +74,5 @@ export const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
     </form>
   )
 }
+
+export default LoginForm

@@ -1,8 +1,8 @@
+import { userReducer } from 'entities/user'
 import { loginReducer } from 'features/auth-by-username/model/slice/login-slice'
 
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
-import { userReducer } from '../../../../entities/user'
 import { StateSchema } from './state-schema'
 
 const rootReducer = combineReducers({

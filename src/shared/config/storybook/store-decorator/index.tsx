@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { configureStore, DeepPartial, EnhancedStore, ReducersMapObject } from '@reduxjs/toolkit'
 import { Story } from '@storybook/react'
 
-import { userReducer } from '../../../../entities/user'
+import { userReducer } from 'entities/user'
 
 const createReduxStore = (initialState?: StateSchema): EnhancedStore<StateSchema> => {
   const rootReducer: ReducersMapObject<StateSchema> = {

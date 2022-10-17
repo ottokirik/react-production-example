@@ -4,8 +4,6 @@ import { loginByEmail } from '../services/login-by-email'
 import { LoginSchema } from '../types/login-schema'
 
 const initialState: LoginSchema = {
-  email: '',
-  password: '',
   isLoading: false,
   error: false,
 }

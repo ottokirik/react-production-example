@@ -4,11 +4,14 @@ import { USER_LOCAL_STORAGE_KEY } from 'shared/constants/local-storage'
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { LoginSchema } from '../types/login-schema'
+interface LoginByEmail {
+  email: string
+  password: string
+}
 
 const loginURL = 'http://localhost:8000/login'
 
-export const loginByEmail = createAsyncThunk<User, Omit<LoginSchema, 'isLoading' | 'error'>>(
+export const loginByEmail = createAsyncThunk<User, LoginByEmail>(
   'login/loginByEmail',
   async ({ email, password }, { dispatch }) => {
     const { data } = await axios.post(loginURL, {

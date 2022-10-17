@@ -9,6 +9,8 @@ import { Button, ButtonTheme, Input, Text } from 'shared/ui'
 import { getLoginState } from '../../model/selectors'
 import { loginByEmail } from '../../model/services/login-by-email'
 import css from './login-form.module.sass'
+import { useReducerLoader } from 'shared/lib/hooks'
+import { loginReducer } from 'features/auth-by-username/model/slice/login-slice'
 
 enum LoginsField {
   EMAIL = 'email',
@@ -38,6 +40,8 @@ const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { isLoading, error } = useAppSelector(getLoginState)
+
+  useReducerLoader('login', loginReducer)
 
   const formRef = useRef<HTMLFormElement>(null)
 

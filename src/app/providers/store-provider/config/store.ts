@@ -1,19 +1,23 @@
 import { userReducer } from 'entities/user'
-import { loginReducer } from 'features/auth-by-username/model/slice/login-slice'
 
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
 
 import { StateSchema } from './state-schema'
+import { createReducerManager } from './reducer-manager'
 
-const rootReducer = combineReducers({
+const rootReducer: ReducersMapObject<StateSchema> = {
   user: userReducer,
-  login: loginReducer,
-})
+}
+
+const reducerManager = createReducerManager(rootReducer)
 
 export const store = configureStore<StateSchema>({
-  reducer: rootReducer,
+  reducer: reducerManager.reduce as Reducer<StateSchema>,
   devTools: IS_DEV,
 })
+
+// @ts-ignore
+store.reducerManager = reducerManager
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

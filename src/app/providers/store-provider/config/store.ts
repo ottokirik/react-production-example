@@ -1,24 +1,34 @@
 import { userReducer } from 'models/user'
 
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
+import { AnyAction, configureStore, EnhancedStore, ReducersMapObject, ThunkMiddleware } from '@reduxjs/toolkit'
 
-import { StateSchema } from './state-schema'
 import { createReducerManager } from './reducer-manager'
+import { StateSchema } from './state-schema'
 
-const rootReducer: ReducersMapObject<StateSchema> = {
-  user: userReducer,
+export const createAppStore = (
+  initialState?: StateSchema,
+  asyncReducers?: ReducersMapObject<StateSchema>
+): EnhancedStore<StateSchema, AnyAction, [ThunkMiddleware<StateSchema, AnyAction, undefined>]> => {
+  const rootReducer: ReducersMapObject<StateSchema> = {
+    ...asyncReducers,
+    user: userReducer,
+  }
+
+  const reducerManager = createReducerManager(rootReducer)
+
+  const store = configureStore<StateSchema, AnyAction, [ThunkMiddleware<StateSchema, AnyAction, undefined>]>({
+    // @ts-expect-error
+    reducer: reducerManager.reduce,
+    devTools: IS_DEV,
+    preloadedState: initialState,
+  })
+
+  // @ts-expect-error
+  store.reducerManager = reducerManager
+
+  return store
 }
 
-const reducerManager = createReducerManager(rootReducer)
-
-export const store = configureStore<StateSchema>({
-  // @ts-expect-error
-  reducer: reducerManager.reduce,
-  devTools: IS_DEV,
-})
-
-// @ts-expect-error
-store.reducerManager = reducerManager
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = StateSchema
+export type AppStore = ReturnType<typeof createAppStore>
+export type AppDispatch = AppStore['dispatch']

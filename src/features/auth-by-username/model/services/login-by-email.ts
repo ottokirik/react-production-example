@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { User, userActions } from 'entities/user'
+import { User, userActions } from 'models/user'
 import { USER_LOCAL_STORAGE_KEY } from 'shared/constants/local-storage'
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-interface LoginByEmail {
+export interface LoginByEmail {
   email: string
   password: string
 }

@@ -1,4 +1,4 @@
-import { userReducer } from 'entities/user'
+import { userReducer } from 'models/user'
 
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
 

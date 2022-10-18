@@ -7,7 +7,7 @@
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",
     "start": "webpack serve --env port=3000",
-    "test:unit": "jest --config ./config/jest/jest.config.ts",
+    "test:unit": "jest",
     "test:ui": "npx loki test",
     "test:ui:update": "npx loki update",
     "test:ui:ok": "npx loki approve",

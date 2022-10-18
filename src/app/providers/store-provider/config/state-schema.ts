@@ -1,5 +1,5 @@
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
-import { UserSchema } from 'entities/user'
+import { UserSchema } from 'models/user'
 import { LoginSchema } from 'features/auth-by-username'
 
 export interface StateSchema {

@@ -6,7 +6,7 @@ import { classNames } from 'shared/lib/class-names'
 import { ClassName } from 'shared/types'
 import { Button, ButtonTheme, Input, Text } from 'shared/ui'
 
-import { getLoginState } from '../../model/selectors'
+import { getLoginStateSelector } from '../../model/selectors'
 import { loginByEmail } from '../../model/services/login-by-email'
 import css from './login-form.module.sass'
 import { useReducerLoader } from 'shared/lib/hooks'
@@ -39,7 +39,7 @@ type LoginFormProps = {
 const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { isLoading, error } = useAppSelector(getLoginState)
+  const { isLoading, error } = useAppSelector(getLoginStateSelector)
 
   useReducerLoader('login', loginReducer)
 

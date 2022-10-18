@@ -1,6 +1,6 @@
 import { FC, Suspense, useEffect } from 'react'
 
-import { userActions } from 'entities/user'
+import { userActions } from 'models/user'
 import { classNames } from 'shared/lib/class-names'
 import { NavBar } from 'widgets/nav-bar'
 import { PageLoader } from 'widgets/page-loader'

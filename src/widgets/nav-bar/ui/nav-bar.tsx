@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/providers/store-provider'
-import { getUserAuthData, userActions } from 'entities/user'
+import { getUserAuthData, userActions } from 'models/user'
 import { LoginModal } from 'features/auth-by-username'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/class-names'

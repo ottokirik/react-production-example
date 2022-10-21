@@ -39,7 +39,7 @@ type LoginFormProps = {
 const LoginForm: FC<LoginFormProps> = ({ className = '', onSuccess = () => null }) => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { isLoading, error } = useAppSelector(getLoginStateSelector)
+  const { isLoading, isError: error } = useAppSelector(getLoginStateSelector)
 
   useReducerLoader('login', loginReducer)
 

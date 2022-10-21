@@ -7,7 +7,7 @@ import { useStore } from 'react-redux'
 import { Reducer } from '@reduxjs/toolkit'
 import { useLogActions } from './use-log-actions'
 
-export const useReducerLoader = (reducerName: StateSchemaKey, reducer: Reducer): void => {
+export const useReducerLoader = (reducerName: StateSchemaKey, reducer: Reducer, holdState: boolean = false): void => {
   const store = useStore() as ReduxStoreWithManager
   const { initAction, destroyAction } = useLogActions(reducerName)
 
@@ -16,8 +16,9 @@ export const useReducerLoader = (reducerName: StateSchemaKey, reducer: Reducer):
     initAction()
 
     return () => {
+      if (holdState) return
       store.reducerManager.remove(reducerName)
       destroyAction()
     }
-  }, [store.reducerManager, reducerName, reducer, initAction, destroyAction])
+  }, [store.reducerManager, reducerName, reducer, initAction, destroyAction, holdState])
 }

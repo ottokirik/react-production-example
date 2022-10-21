@@ -5,7 +5,7 @@ import { LoginSchema } from '../types/login-schema'
 
 const initialState: LoginSchema = {
   isLoading: false,
-  error: false,
+  isError: false,
 }
 
 export const loginSlice = createSlice({
@@ -19,7 +19,7 @@ export const loginSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginByEmail.pending, (state) => {
-        state.error = false
+        state.isError = false
         state.isLoading = true
       })
       .addCase(loginByEmail.fulfilled, (state, action) => {
@@ -27,7 +27,7 @@ export const loginSlice = createSlice({
       })
       .addCase(loginByEmail.rejected, (state, action) => {
         state.isLoading = false
-        state.error = true
+        state.isError = true
       })
   },
 })

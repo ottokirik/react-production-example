@@ -7,13 +7,13 @@ describe('login selectors', () => {
     const state: DeepPartial<StateSchema> = {
       login: {
         isLoading: false,
-        error: false,
+        isError: false,
       },
     }
 
     const result = {
       isLoading: false,
-      error: false,
+      isError: false,
     }
 
     expect(getLoginStateSelector(state as StateSchema)).toEqual(result)

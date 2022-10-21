@@ -1,0 +1,20 @@
+.sideBarLink
+    display: flex
+    gap: 12px
+    text-decoration: none
+    color: var(--primary-color)
+
+.sideBarLinkIcon
+    fill: var(--primary-color)
+    flex-shrink: 0
+
+.sideBarLinkText
+    opacity: 0
+    scale: 0
+    transition: var(--transition)
+    font-size: var(--font-size-s)
+    white-space: nowrap
+
+.sideBarLinkText.open
+    opacity: 1
+    scale: 1

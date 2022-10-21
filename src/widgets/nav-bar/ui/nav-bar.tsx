@@ -1,8 +1,8 @@
-import { FC } from 'react'
+import { memo } from 'react'
 
 import { useAppDispatch, useAppSelector } from 'app/providers/store-provider'
-import { getUserAuthData, userActions } from 'models/user'
 import { LoginModal } from 'features/auth-by-username'
+import { getUserAuthData, userActions } from 'models/user'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/class-names'
 import { useToggleFlag } from 'shared/lib/hooks'
@@ -12,7 +12,7 @@ import { ButtonTheme } from 'shared/ui/button/button'
 
 import css from './nav-bar.module.sass'
 
-export const NavBar: FC<ClassName> = ({ className = '' }) => {
+export const NavBar = memo(({ className = '' }: ClassName): JSX.Element => {
   const { t } = useTranslation()
   const { flag: isAuthModalOpen, setFlagToFalse: closeAuthModal, setFlagToTrue: openAuthModal } = useToggleFlag()
 
@@ -41,4 +41,6 @@ export const NavBar: FC<ClassName> = ({ className = '' }) => {
       <LoginModal isOpen={isAuthModalOpen} onClose={closeAuthModal} />
     </nav>
   )
-}
+})
+
+NavBar.displayName = 'NavBar'

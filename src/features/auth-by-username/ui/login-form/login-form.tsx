@@ -33,10 +33,10 @@ const inputsConfig: Record<string, InputHTMLAttributes<HTMLInputElement>> = {
 }
 
 type LoginFormProps = {
-  onClose?: () => void
+  onSuccess?: () => void
 } & ClassName
 
-const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
+const LoginForm: FC<LoginFormProps> = ({ className = '', onSuccess = () => null }) => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { isLoading, error } = useAppSelector(getLoginStateSelector)
@@ -56,9 +56,15 @@ const LoginForm: FC<LoginFormProps> = ({ className = '', onClose }) => {
     const email = formData.get(LoginsField.EMAIL) as string
     const password = formData.get(LoginsField.PASSWORD) as string
 
-    void dispatch(loginByEmail({ email, password }))
-
-    form.reset()
+    dispatch(loginByEmail({ email, password })).then(
+      (result) => {
+        if (result.meta.requestStatus === 'fulfilled') {
+          form.reset()
+          onSuccess()
+        }
+      },
+      () => null
+    )
   }
 
   return (

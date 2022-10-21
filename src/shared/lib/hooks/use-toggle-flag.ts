@@ -1,9 +1,23 @@
 import { useCallback, useState } from 'react'
 
-export const useToggleFlag = (): [boolean, () => void] => {
+interface UseToggleFlagReturnType {
+  flag: boolean
+  toggleFlag: () => void
+  setFlagToTrue: () => void
+  setFlagToFalse: () => void
+}
+
+export const useToggleFlag = (): UseToggleFlagReturnType => {
   const [isFlag, setIsFlag] = useState<boolean>(false)
 
-  const toggleFlag = useCallback((): void => setIsFlag((prev) => !prev), [])
+  const handleToggleFlag = useCallback(() => setIsFlag((prev) => !prev), [])
+  const handleFlagToTrue = useCallback(() => setIsFlag(true), [])
+  const handleFlagToFalse = useCallback(() => setIsFlag(false), [])
 
-  return [isFlag, toggleFlag]
+  return {
+    flag: isFlag,
+    toggleFlag: handleToggleFlag,
+    setFlagToTrue: handleFlagToTrue,
+    setFlagToFalse: handleFlagToFalse,
+  }
 }

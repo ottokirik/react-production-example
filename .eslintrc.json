@@ -11,6 +11,10 @@
     "plugin:prettier/recommended",
     "plugin:i18next/recommended"
   ],
+  "globals": {
+    "__IS_DEV__": true,
+    "_API_": true
+  },
   "overrides": [{ "files": ["**/src/**/*.{test,stories}.{ts,tsx}"], "rules": { "i18next/no-literal-string": "off" } }],
   "parserOptions": {
     "ecmaVersion": "latest",

@@ -6,7 +6,7 @@ import { DefinePlugin, HotModuleReplacementPlugin, ProgressPlugin } from 'webpac
 import type { WebpackPluginInstance } from 'webpack'
 import type { BuildOptions } from './types/config'
 
-export const buildPlugins = ({ paths: { html }, isDev }: BuildOptions): WebpackPluginInstance[] => {
+export const buildPlugins = ({ paths: { html }, isDev, apiUrl }: BuildOptions): WebpackPluginInstance[] => {
   const plugins = [
     new HtmlWebpackPlugin({
       template: html,
@@ -17,7 +17,8 @@ export const buildPlugins = ({ paths: { html }, isDev }: BuildOptions): WebpackP
       chunkFilename: 'css/[name].[contenthash:8].css',
     }),
     new DefinePlugin({
-      IS_DEV: JSON.stringify(isDev),
+      _IS_DEV_: JSON.stringify(isDev),
+      _API_: JSON.stringify(apiUrl),
     }),
   ]
 

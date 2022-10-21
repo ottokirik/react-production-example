@@ -16,13 +16,13 @@ const root = ReactDOM.createRoot(htmlRootElement)
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <StoreProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <StoreProvider>
           <ThemeProvider>
             <App />
           </ThemeProvider>
-        </BrowserRouter>
-      </StoreProvider>
+        </StoreProvider>
+      </BrowserRouter>
     </ErrorBoundary>
   </React.StrictMode>
 )

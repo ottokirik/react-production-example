@@ -1,6 +1,7 @@
-import axios from 'axios'
 import { User, userActions } from 'models/user'
 import { USER_LOCAL_STORAGE_KEY } from 'shared/constants/local-storage'
+
+import { ThunkExtraArg } from 'app/providers/store-provider'
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
@@ -9,12 +10,12 @@ export interface LoginByEmail {
   password: string
 }
 
-const loginURL = 'http://localhost:8000/login'
+const loginURL = '/login'
 
-export const loginByEmail = createAsyncThunk<User, LoginByEmail>(
+export const loginByEmail = createAsyncThunk<User, LoginByEmail, { extra: ThunkExtraArg }>(
   'login/loginByEmail',
-  async ({ email, password }, { dispatch }) => {
-    const { data } = await axios.post(loginURL, {
+  async ({ email, password }, { dispatch, extra }) => {
+    const { data } = await extra.api.post<User>(loginURL, {
       email,
       password,
     })

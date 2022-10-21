@@ -4,10 +4,13 @@ import { AnyAction, configureStore, EnhancedStore, ReducersMapObject, ThunkMiddl
 
 import { createReducerManager } from './reducer-manager'
 import { StateSchema } from './state-schema'
+import { axiosInstance } from 'shared/api/api'
+import { NavigateFunction } from 'react-router-dom'
 
 export const createAppStore = (
   initialState?: StateSchema,
-  asyncReducers?: ReducersMapObject<StateSchema>
+  asyncReducers?: ReducersMapObject<StateSchema>,
+  navigate?: NavigateFunction
 ): EnhancedStore<StateSchema, AnyAction, [ThunkMiddleware<StateSchema, AnyAction, undefined>]> => {
   const rootReducer: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
@@ -19,8 +22,18 @@ export const createAppStore = (
   const store = configureStore<StateSchema, AnyAction, [ThunkMiddleware<StateSchema, AnyAction, undefined>]>({
     // @ts-expect-error
     reducer: reducerManager.reduce,
-    devTools: IS_DEV,
+    devTools: _IS_DEV_,
     preloadedState: initialState,
+    // @ts-expect-error
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        thunk: {
+          extraArgument: {
+            api: axiosInstance,
+            navigate,
+          },
+        },
+      }),
   })
 
   // @ts-expect-error

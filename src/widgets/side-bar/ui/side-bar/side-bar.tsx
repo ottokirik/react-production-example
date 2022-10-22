@@ -14,7 +14,7 @@ import css from './side-bar.module.sass'
 
 type SideBarProps = HTMLAttributes<HTMLDivElement> & ClassName
 
-export const SideBar = memo(({ className = '', ...rest }: SideBarProps): JSX.Element => {
+export const SideBar = memo(({ className, ...rest }: SideBarProps): JSX.Element => {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(true)
   const handleToggle = (): void => {

@@ -10,7 +10,7 @@ import { ButtonTheme } from 'shared/ui/button/button'
 
 import css from './theme-switcher.module.sass'
 
-export const ThemeSwitcher = memo(({ className = '' }: ClassName): JSX.Element => {
+export const ThemeSwitcher = memo(({ className }: ClassName): JSX.Element => {
   const { theme, toggleTheme } = useTheme()
   const { t } = useTranslation()
 

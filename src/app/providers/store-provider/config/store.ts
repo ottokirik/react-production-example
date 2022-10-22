@@ -1,9 +1,16 @@
 import { userReducer } from 'models/user'
 
-import { AnyAction, configureStore, EnhancedStore, ReducersMapObject, ThunkMiddleware } from '@reduxjs/toolkit'
+import {
+  AnyAction,
+  CombinedState,
+  configureStore,
+  EnhancedStore,
+  ReducersMapObject,
+  ThunkMiddleware,
+} from '@reduxjs/toolkit'
 
 import { createReducerManager } from './reducer-manager'
-import { StateSchema } from './state-schema'
+import { StateSchema, ThunkExtraArg } from './state-schema'
 import { axiosInstance } from 'shared/api/api'
 import { NavigateFunction } from 'react-router-dom'
 
@@ -11,7 +18,11 @@ export const createAppStore = (
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
   navigate?: NavigateFunction
-): EnhancedStore<StateSchema, AnyAction, [ThunkMiddleware<StateSchema, AnyAction, undefined>]> => {
+): EnhancedStore<
+  CombinedState<StateSchema>,
+  AnyAction,
+  [ThunkMiddleware<CombinedState<StateSchema>, AnyAction, { extra: ThunkExtraArg }>]
+> => {
   const rootReducer: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
     user: userReducer,
@@ -19,7 +30,11 @@ export const createAppStore = (
 
   const reducerManager = createReducerManager(rootReducer)
 
-  const store = configureStore<StateSchema, AnyAction, [ThunkMiddleware<StateSchema, AnyAction, undefined>]>({
+  const store: EnhancedStore<
+    CombinedState<StateSchema>,
+    AnyAction,
+    [ThunkMiddleware<CombinedState<StateSchema>, AnyAction, { extra: ThunkExtraArg }>]
+  > = configureStore({
     // @ts-expect-error
     reducer: reducerManager.reduce,
     devTools: _IS_DEV_,

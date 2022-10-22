@@ -12,7 +12,7 @@ import { ButtonTheme } from 'shared/ui/button/button'
 
 import css from './nav-bar.module.sass'
 
-export const NavBar = memo(({ className = '' }: ClassName): JSX.Element => {
+export const NavBar = memo(({ className }: ClassName): JSX.Element => {
   const { t } = useTranslation()
   const { flag: isAuthModalOpen, setFlagToFalse: closeAuthModal, setFlagToTrue: openAuthModal } = useToggleFlag()
 

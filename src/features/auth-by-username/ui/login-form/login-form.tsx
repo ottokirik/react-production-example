@@ -36,7 +36,7 @@ type LoginFormProps = {
   onSuccess?: () => void
 } & ClassName
 
-const LoginForm: FC<LoginFormProps> = ({ className = '', onSuccess = () => null }) => {
+const LoginForm: FC<LoginFormProps> = ({ className, onSuccess = () => null }) => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const { isLoading, isError: error } = useAppSelector(getLoginStateSelector)

@@ -19,7 +19,7 @@ type AppLinkProps = {
   Children
 
 export const AppLink: FC<AppLinkProps> = (props: AppLinkProps) => {
-  const { className = '', children, to, theme = AppLinkTheme.PRIMARY, ...rest } = props
+  const { className, children, to, theme = AppLinkTheme.PRIMARY, ...rest } = props
   return (
     <Link to={to} className={classNames({ cls: css.appLink, adds: [className, css[theme]] })} {...rest}>
       {children}

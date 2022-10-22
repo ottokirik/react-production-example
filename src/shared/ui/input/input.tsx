@@ -10,7 +10,7 @@ type InputProps = {
 } & InputHTMLAttributes<HTMLInputElement> &
   ClassName
 
-export const Input: FC<InputProps> = ({ className = '', type = 'text', label = '', ...inputProps }) => {
+export const Input: FC<InputProps> = ({ className, type = 'text', label = '', ...inputProps }) => {
   return (
     <label className={css.inputContainer}>
       {label}

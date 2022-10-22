@@ -23,7 +23,7 @@ type ButtonProps = {
   Children
 
 export const Button: FC<ButtonProps> = (props: ButtonProps) => {
-  const { children, className = '', theme, size = ButtonSize.MEDIUM, type = 'button', ...rest } = props
+  const { children, className, theme, size = ButtonSize.MEDIUM, type = 'button', ...rest } = props
   const themeClass = theme !== undefined ? css[theme] : ''
 
   return (

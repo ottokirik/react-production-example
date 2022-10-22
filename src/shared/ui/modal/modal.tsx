@@ -15,7 +15,7 @@ export type ModalProps = {
 } & ClassName &
   Children
 
-export const Modal: FC<ModalProps> = ({ className = '', children, isOpen, onClose }) => {
+export const Modal: FC<ModalProps> = ({ className, children, isOpen, onClose }) => {
   const [isVisible, setIsVisible] = useState(false)
 
   const handleClose = (): void => {
@@ -31,7 +31,7 @@ export const Modal: FC<ModalProps> = ({ className = '', children, isOpen, onClos
       const timerId = setTimeout(() => {
         setIsVisible(true)
         clearTimeout(timerId)
-      }, 100)
+      }, 0)
     }
   }, [isOpen])
 

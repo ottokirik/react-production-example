@@ -10,7 +10,7 @@ type LangSwitcherProps = {
   short?: boolean
 } & ClassName
 
-export const LangSwitcher = memo(({ className = '', short = false }: LangSwitcherProps): JSX.Element => {
+export const LangSwitcher = memo(({ className, short = false }: LangSwitcherProps): JSX.Element => {
   const { t, i18n } = useTranslation()
 
   const handleToggleLanguage = (): void => {

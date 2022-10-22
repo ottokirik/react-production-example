@@ -11,7 +11,7 @@ type OverlayProps = {
 } & ClassName &
   Children
 
-export const Overlay: FC<OverlayProps> = ({ className = '', children, isVisible, onClose }) => {
+export const Overlay: FC<OverlayProps> = ({ className, children, isVisible, onClose }) => {
   const mods: Record<string, boolean> = {
     [css.visible]: isVisible,
   }

@@ -56,7 +56,6 @@ const LoginForm: FC<LoginFormProps> = ({ className, onSuccess = () => null }) =>
     const email = formData.get(LoginsField.EMAIL) as string
     const password = formData.get(LoginsField.PASSWORD) as string
 
-    // @ts-expect-error
     dispatch(loginByEmail({ email, password })).then(
       (result) => {
         if (result.meta.requestStatus === 'fulfilled') {

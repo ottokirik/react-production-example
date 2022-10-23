@@ -10,7 +10,6 @@ const ProfilePage: FC<ClassName> = ({ className }) => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    // @ts-expect-error
     void dispatch(fetchProfileData())
   }, [dispatch])
 

@@ -5,24 +5,30 @@ import {
   CombinedState,
   configureStore,
   EnhancedStore,
+  MiddlewareArray,
+  Reducer,
   ReducersMapObject,
   ThunkMiddleware,
 } from '@reduxjs/toolkit'
 
 import { createReducerManager } from './reducer-manager'
-import { StateSchema, ThunkExtraArg } from './state-schema'
+import { ReducerManager, StateSchema, ThunkExtraArg } from './state-schema'
 import { axiosInstance } from 'shared/api/api'
 import { NavigateFunction } from 'react-router-dom'
+
+type StoreWithManagerType = EnhancedStore<
+  CombinedState<StateSchema>,
+  AnyAction,
+  MiddlewareArray<[ThunkMiddleware<CombinedState<StateSchema>, AnyAction, ThunkExtraArg>]>
+> & {
+  reducerManager?: ReducerManager
+}
 
 export const createAppStore = (
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
   navigate?: NavigateFunction
-): EnhancedStore<
-  CombinedState<StateSchema>,
-  AnyAction,
-  [ThunkMiddleware<CombinedState<StateSchema>, AnyAction, { extra: ThunkExtraArg }>]
-> => {
+): StoreWithManagerType => {
   const rootReducer: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
     user: userReducer,
@@ -30,28 +36,24 @@ export const createAppStore = (
 
   const reducerManager = createReducerManager(rootReducer)
 
-  const store: EnhancedStore<
-    CombinedState<StateSchema>,
-    AnyAction,
-    [ThunkMiddleware<CombinedState<StateSchema>, AnyAction, { extra: ThunkExtraArg }>]
-  > = configureStore({
-    // @ts-expect-error
-    reducer: reducerManager.reduce,
+  const extraArg: ThunkExtraArg = {
+    api: axiosInstance,
+    navigate,
+  }
+
+  const store: StoreWithManagerType = configureStore({
+    reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>, AnyAction>,
     devTools: _IS_DEV_,
     preloadedState: initialState,
-    // @ts-expect-error
+
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: {
-          extraArgument: {
-            api: axiosInstance,
-            navigate,
-          },
+          extraArgument: extraArg,
         },
       }),
   })
 
-  // @ts-expect-error
   store.reducerManager = reducerManager
 
   return store

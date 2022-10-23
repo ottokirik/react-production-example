@@ -23,7 +23,9 @@ export const createReducerManager = (initialReducers: ReducersMapObject<StateSch
         keysToRemove = []
       }
 
-      return combinedReducer(state, action)
+      const reducer = combinedReducer(state, action)
+
+      return reducer
     },
 
     add: (key: StateSchemaKey, reducer: Reducer) => {

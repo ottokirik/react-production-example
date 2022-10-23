@@ -12,12 +12,12 @@ export const useReducerLoader = (reducerName: StateSchemaKey, reducer: Reducer, 
   const { initAction, destroyAction } = useLogActions(reducerName)
 
   useEffect(() => {
-    store.reducerManager.add(reducerName, reducer)
+    store?.reducerManager.add(reducerName, reducer)
     initAction()
 
     return () => {
       if (holdState) return
-      store.reducerManager.remove(reducerName)
+      store?.reducerManager.remove(reducerName)
       destroyAction()
     }
   }, [store.reducerManager, reducerName, reducer, initAction, destroyAction, holdState])
